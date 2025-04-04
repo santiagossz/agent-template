@@ -1,0 +1,18 @@
+[project]
+name = "agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.115.12",
+    "langchain>=0.3.23",
+    "langchain-community>=0.3.21",
+    "langchain-openai>=0.3.12",
+    "langgraph>=0.3.25",
+    "notebook>=7.3.3",
+    "playwright>=1.51.0",
+    "pydantic-settings>=2.8.1",
+    "supabase>=2.15.0",
+    "uvicorn>=0.34.0",
+]
