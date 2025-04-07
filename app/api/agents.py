@@ -16,7 +16,8 @@ router = APIRouter()
 
 
 class InputMessage(BaseModel):
-    message: Dict[str, str]
+    content: str
+    content_type: str
 
 
 async def get_config(session_id: str) -> RunnableConfig:
@@ -32,9 +33,9 @@ async def create_conversation():
 
 
 @router.post("/session/{session_id}/messages")
-async def stream_conversation(msg: InputMessage, config: Config):  # type: ignore
-    user_input = msg.message.get("content", "")
-    if msg.message.get("type") == "text":
+async def stream_conversation(input_msg: InputMessage, config: Config):  # type: ignore
+    user_input = input_msg.content
+    if input_msg.content_type == "text":
         logger.info(f"Starting Data Agent: {user_input}")
         state = AgentState(messages=user_input, data=[{}])
     else:
@@ -45,7 +46,7 @@ async def stream_conversation(msg: InputMessage, config: Config):  # type: ignor
     )
 
 
-@router.get("/session/{session_id}/memory")
+@router.post("/session/{session_id}/memory")
 async def memory(config: Config):  # type: ignore
     return agent.get_memory(config)
 

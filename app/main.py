@@ -1,5 +1,5 @@
 import uvicorn
-from app.config import api_cfg, LOGGING_CONFIG, agent_cfg
+from app.config import api_cfg, LOGGING_CONFIG
 from fastapi import FastAPI
 from app.api import agents
 

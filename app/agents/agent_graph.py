@@ -26,10 +26,8 @@ class AgentGraph:
             state, config, stream_mode=["custom", "messages"]
         ):
             if mode == "messages":
-                chunk, metadata = msg
-                yield json.dumps(
-                    {"content": chunk.content, "node": metadata["langgraph_node"]}
-                )
+                chunk, _ = msg
+                yield chunk.content
             else:
                 yield json.dumps(msg)
 
